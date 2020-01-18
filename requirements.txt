@@ -13,3 +13,4 @@ urllib3==1.25.7
 Werkzeug==0.16.0
 scikit-learn==0.22
 scipy==1.4.1
+gunicorn==19.9.0
