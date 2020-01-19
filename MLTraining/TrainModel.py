@@ -25,18 +25,18 @@ for text in data["Text"]:
 #count_vectorizer = pickle.load(open("vector.pickle", "rb"))
 
 from sklearn.feature_extraction.text import CountVectorizer
-max_features = 1200  # We use the most common word
+max_features = 400  # We use the most common word
 count_vectorizer = CountVectorizer(max_features=max_features,
                                    stop_words="english")
 sparce_matrix = count_vectorizer.fit_transform(text_list).toarray()
-pickle.dump(count_vectorizer, open("vector.pickle", "wb"))
+pickle.dump(count_vectorizer, open("vector_reduced.pickle", "wb"))
 
 y = data.iloc[:, 0].values  # male or female classes
 x = sparce_matrix
 from sklearn.model_selection import train_test_split
 
 x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.1,
-                                                    random_state=5)
+                                                    random_state=3)
 #
 # from imblearn.over_sampling import RandomOverSampler as OverSampler
 #
@@ -58,7 +58,7 @@ lr = LogisticRegression(max_iter=200)
 lr.fit(x_train, y_train)
 print("our accuracy is: {}".format(lr.score(x_test, y_test)))
 print("our accuracy is: {}".format(lr.score(x_train, y_train)))
-pickle.dump(lr, open("LRModel.pickle", "wb"))
+pickle.dump(lr, open("LRModel_reduced.pickle", "wb"))
 #
 # ls = LogisticRegression(max_iter=225)
 # ls.fit(x_sample, y_sample)
