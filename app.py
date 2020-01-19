@@ -25,7 +25,7 @@ def predict():
     body = request.get_data()
     if not body:
         abort(400)
-    body = ast.literal_eval(body.decode('ascii'))
+    body = ast.literal_eval(body.decode('UTF-8'))
     text = body.get('text', "")
     if text == "":
         return "0"
