@@ -59,8 +59,10 @@ def predict():
 
         if word_percentile > 75:
             word_percentile = 75 - (word_percentile - 75)
+            word_percentile = word_percentile / 0.75
         if vocab_percentile > 75:
             vocab_percentile = 75 - (vocab_percentile - 75)
+            vocab_percentile = vocab_percentile / 0.75
 
         final_score = (35 * word_percentile / 100) + \
                       (40 * vocab_percentile / 100) + (25 * val)
