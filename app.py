@@ -52,13 +52,14 @@ def predict():
         # 35% descriptiveness, 35% language diversity, 30% project scoring
 
         final_score = (35 * word_percentile/100) + \
-                      (35 * vocab_percentile/100) + (30 * val)
-        final_score = int(final_score)
-
-        print("descriptive: ", word_percentile)
-        print("diversity: ", vocab_percentile)
-        print("project rating: ", val)
-        print("final verdict: ", final_score)
+                      (40 * vocab_percentile/100) + (25 * val)
+        if final_score < 75:
+            final_score = final_score + 10
+        #
+        # print("descriptive: ", word_percentile)
+        # print("diversity: ", vocab_percentile)
+        # print("project rating: ", val)
+        # print("final verdict: ", final_score)
 
         return str(final_score)
 
