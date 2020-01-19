@@ -54,7 +54,7 @@ def predict():
         final_score = (35 * word_percentile/100) + \
                       (40 * vocab_percentile/100) + (25 * val)
         if final_score < 75:
-            final_score = final_score + 10
+            final_score = int(final_score + 10)
         #
         # print("descriptive: ", word_percentile)
         # print("diversity: ", vocab_percentile)
