@@ -66,9 +66,9 @@ def predict():
             vocab_percentile = vocab_percentile / 0.75
 
         if word_percentile < 60:
-            advice = "try to be a bit more descriptive"
+            advice = ", try to be a bit more descriptive"
         elif vocab_percentile < 60:
-            advice = "try to use more technical terms"
+            advice = ", try to use more technical terms"
 
         final_score = (35 * word_percentile / 100) + \
                       (40 * vocab_percentile / 100) + (25 * val)
@@ -82,7 +82,7 @@ def predict():
         print("project rating: ", val)
         print("final verdict: ", final_score)
 
-        return "Rating: " + str(final_score) + ", " + advice
+        return "Rating: " + str(final_score) + advice
 
 
 if __name__ == '__main__':
