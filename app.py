@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, abort
 import pickle
 import re
 import nltk as nlp
@@ -22,6 +22,8 @@ def process_text_to_root(text):
 @app.route('/predict', methods=["POST"])
 def predict():
     body = request.get_json()
+    if not body:
+        abort(400)
     text = body.get('text', "")
     if text == "":
         return "0"
