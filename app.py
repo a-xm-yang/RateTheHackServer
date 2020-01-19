@@ -57,12 +57,18 @@ def predict():
         # 35% descriptiveness, 35% language diversity, 30% project scoring
         # Make some projections to make 75 percentile optimal point
 
+        advice = ""
         if word_percentile > 75:
             word_percentile = 75 - (word_percentile - 75)
             word_percentile = word_percentile / 0.75
         if vocab_percentile > 75:
             vocab_percentile = 75 - (vocab_percentile - 75)
             vocab_percentile = vocab_percentile / 0.75
+
+        if word_percentile < 60:
+            advice = "try to be a bit more descriptive"
+        elif vocab_percentile < 60:
+            advice = "try to use more technical terms"
 
         final_score = (35 * word_percentile / 100) + \
                       (40 * vocab_percentile / 100) + (25 * val)
@@ -76,7 +82,7 @@ def predict():
         print("project rating: ", val)
         print("final verdict: ", final_score)
 
-        return str(final_score)
+        return "Rating: " + str(final_score) + ", " + advice
 
 
 if __name__ == '__main__':
